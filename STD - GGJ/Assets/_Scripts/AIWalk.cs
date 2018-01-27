@@ -150,10 +150,13 @@ public class AIWalk : MonoBehaviour {
 
         if (playerTest != null) {
             //we are touching a player!
-
-            infected = playerTest.playerNumber == 0 ? InfectData.PLAYER_1 : InfectData.PLAYER_2;
-            UpdateVisual();
-
+            List<GameObject> allPlayers = new List<GameObject>(GameObject.FindGameObjectsWithTag("Player"));
+            allPlayers.Remove(playerTest.gameObject);
+            
+            if(allPlayers.ToArray()[0].GetComponent<PlayerMovement>().myPowerUp != PlayerMovement.powerUp.INVINCIBILITY){
+                infected = playerTest.playerNumber == 0 ? InfectData.PLAYER_1 : InfectData.PLAYER_2;
+                UpdateVisual();
+            }
         }
 
     }
