@@ -35,6 +35,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4615889880460142}
   - component: {fileID: 114395920034362864}
+  - component: {fileID: 135808300760921792}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Untagged
@@ -51,7 +52,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4594866369456576}
   - component: {fileID: 33582511913182992}
-  - component: {fileID: 135411268929351886}
   - component: {fileID: 23129359775900466}
   m_Layer: 0
   m_Name: Sphere
@@ -115,7 +115,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 33052aa0885ddbe4b82bca1dfb62175c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -153,13 +153,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a6d947bcfcbede49a5ba17d0bdbc799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NO_INFECT: {r: 0.38235295, g: 0.26146194, b: 0.26146194, a: 0}
+  INFECT_P1: {r: 0.8602941, g: 0.84336734, b: 0.24670197, a: 0}
+  INFECT_P2: {r: 0.2462154, g: 0.4488723, b: 0.72794116, a: 0}
   worldObject: {fileID: 0}
---- !u!135 &135411268929351886
+--- !u!135 &135808300760921792
 SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1947632447966786}
+  m_GameObject: {fileID: 1833290377627794}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1

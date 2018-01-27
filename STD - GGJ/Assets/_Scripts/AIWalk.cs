@@ -4,12 +4,29 @@ using UnityEngine;
 
 public class AIWalk : MonoBehaviour {
 
-    public GameObject worldObject;
-    NPCSpawner worldSpawner;
+    public enum InfectData {
+
+        PLAYER_1,
+        PLAYER_2,
+        NONE
+
+    }
 
     public static float MIN_WAIT = 0f;
     public static float MAX_WAIT = 4f;
 
+    public Color NO_INFECT;
+    public Color INFECT_P1;
+    public Color INFECT_P2;
+
+    //world stuff
+    public GameObject worldObject;
+    NPCSpawner worldSpawner;
+
+    //this npc's features
+    InfectData infected = InfectData.NONE;
+
+    //targeting
     Vector3 target;
     Vector3 direction;
     Vector3 heading;
@@ -33,6 +50,8 @@ public class AIWalk : MonoBehaviour {
 
         path = gameObject.AddComponent<LineRenderer>();
 
+        UpdateVisual();
+
     }
 	
 	// Update is called once per frame
@@ -54,20 +73,16 @@ public class AIWalk : MonoBehaviour {
         }
 
         if (wait <= 0 && !walking) {
-            
-            target = new Vector3(Random.Range(worldSpawner.worldMinX, worldSpawner.worldMaxX), Random.Range(worldSpawner.worldMinY, worldSpawner.worldMaxY));
 
+            GetNewTarget();
             UpdateMovement();
 
             RaycastHit hits;
 
             while (Physics.Raycast(gameObject.transform.position, direction, out hits, distance)) {
 
-                target = new Vector3(Random.Range(worldSpawner.worldMinX, worldSpawner.worldMaxX), Random.Range(worldSpawner.worldMinY, worldSpawner.worldMaxY));
-
+                GetNewTarget();
                 UpdateMovement();
-
-                Debug.Log("test");
 
             }
 
@@ -83,11 +98,58 @@ public class AIWalk : MonoBehaviour {
 
 
 
+    private void GetNewTarget() {
+
+        target = new Vector3(Random.Range(worldSpawner.worldMinX, worldSpawner.worldMaxX), Random.Range(worldSpawner.worldMinY, worldSpawner.worldMaxY));
+
+        if (infected != InfectData.NONE) {
+
+            target = gameObject.transform.position + ( new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f)) * 5 );
+
+        }
+
+    }
+
+
     private void UpdateMovement() {
 
         heading = target - gameObject.transform.position;
         distance = heading.magnitude;
         direction = heading / distance;
+
+    }
+
+    public void UpdateVisual() {
+
+        MeshRenderer renderer = gameObject.GetComponentInChildren<MeshRenderer>();
+
+        switch (infected) {
+            case InfectData.NONE:
+                renderer.material.color = NO_INFECT;
+                break;
+
+            case InfectData.PLAYER_1:
+                renderer.material.color = INFECT_P1;
+                break;
+
+            case InfectData.PLAYER_2:
+                renderer.material.color = INFECT_P2;
+                break;
+        }
+
+    }
+
+    private void OnTriggerEnter(Collider other) {
+
+        PlayerMovement playerTest = other.GetComponent<PlayerMovement>();
+
+        if (playerTest != null) {
+            //we are touching a player!
+
+            infected = playerTest.playerNumber == 0 ? InfectData.PLAYER_1 : InfectData.PLAYER_2;
+            UpdateVisual();
+
+        }
 
     }
 
