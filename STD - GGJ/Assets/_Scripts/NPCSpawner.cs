@@ -21,15 +21,9 @@ public class NPCSpawner : MonoBehaviour {
     public float worldMinY = -30;
     public float worldMaxY = 30;
     public List<AIWalk> npcList = new List<AIWalk>();
-    public bool play = true;
+    public bool play = false;
     public float timer = 0f;
 
-
-	// Use this for initialization
-	void Start () {
-        SpawnDoctors();
-        SpawnNPCs();
-	}
 
     void Update()
     {
@@ -59,6 +53,14 @@ public class NPCSpawner : MonoBehaviour {
                 timer = 0;
             }
         }
+    }
+
+
+    public void OnPlay()
+    {
+        play = true;
+        SpawnDoctors();
+        SpawnNPCs();
     }
 
 

@@ -1030,6 +1030,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1899663822}
+        m_MethodName: OnPlay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &551004175
@@ -3636,15 +3647,18 @@ MonoBehaviour:
     type: 2}
   numNPCs: 300
   numDoctors: 2
-  speedObject: {fileID: 0}
-  windObject: {fileID: 0}
-  invincibleObject: {fileID: 0}
+  speedObject: {fileID: 1059017348038982, guid: 42cb135cd9b7dd948ac2497a5df73642,
+    type: 2}
+  windObject: {fileID: 1975383119489852, guid: 824c35c030819a941ab972b8bc2ade43, type: 2}
+  invincibleObject: {fileID: 1173163720990636, guid: 71795c23b94dfe747ad3451766088429,
+    type: 2}
   worldMinX: -50
   worldMaxX: 50
   worldMinY: -30
   worldMaxY: 30
   npcList: []
   play: 1
+  timer: 0
 --- !u!114 &1899663823
 MonoBehaviour:
   m_ObjectHideFlags: 0
