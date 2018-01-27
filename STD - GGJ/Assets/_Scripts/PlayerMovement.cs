@@ -45,8 +45,6 @@ public class PlayerMovement : MonoBehaviour
 
     public powerUp myPowerUp = powerUp.NONE;
     public float timer;
-    public SphereCollider player1;
-    public SphereCollider player2;
 
 
     // Use this for initialization
@@ -93,7 +91,12 @@ public class PlayerMovement : MonoBehaviour
 
         if(myPowerUp == powerUp.WIND)
         {
-            
+            GetComponent<SphereCollider>().radius = 2;
+        }
+        else
+        {
+            GetComponent<SphereCollider>().radius = 5;
+
         }
 
         int verticalMovement = 0;
