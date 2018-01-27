@@ -866,7 +866,7 @@ MonoBehaviour:
   creditsPage: {fileID: 2075390761}
   settingsPage: {fileID: 2140413925}
   gameUI: {fileID: 822729602}
-  resultsPage: {fileID: 0}
+  resultsPage: {fileID: 1547809496}
 --- !u!1 &536767241
 GameObject:
   m_ObjectHideFlags: 0
@@ -1173,7 +1173,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.37961328, y: 0.88886917}
   m_AnchorMax: {x: 0.62200004, y: 1}
-  m_AnchoredPosition: {x: -1.2399979, y: -0.04998994}
+  m_AnchoredPosition: {x: -1.2399979, y: -0.049987793}
   m_SizeDelta: {x: 1.300003, y: -2.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &620487396
@@ -3625,11 +3625,15 @@ MonoBehaviour:
     type: 2}
   numNPCs: 300
   numDoctors: 2
+  speedObject: {fileID: 0}
+  windObject: {fileID: 0}
+  invincibleObject: {fileID: 0}
   worldMinX: -50
   worldMaxX: 50
   worldMinY: -30
   worldMaxY: 30
   npcList: []
+  play: 1
 --- !u!114 &1899663823
 MonoBehaviour:
   m_ObjectHideFlags: 0
