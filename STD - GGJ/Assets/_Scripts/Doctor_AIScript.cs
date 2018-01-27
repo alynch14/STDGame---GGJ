@@ -5,17 +5,18 @@ using UnityEngine;
 public class Doctor_AIScript : MonoBehaviour {
     public GameObject worldObject;
     NPCSpawner worldSpawner;
-    public GameObject targetNPC;
+
+    public AIWalk targetNPC;
 
     public static float MIN_WAIT = 0f;
     public static float MAX_WAIT = 4f;
 
-    Vector3 target;
-    Vector3 direction;
-    Vector3 heading;
-    Vector3 targetNPCWaypoint;
-    float distance;
-    Stack<Vector3> waypoints;
+    public static float WALK_SPEED = 7;
+
+    public Vector3 target;
+    public Vector3 direction;
+    public Vector3 heading;
+    public float distance;
 
     float wait = 0;
     bool walking = false;
@@ -36,53 +37,69 @@ public class Doctor_AIScript : MonoBehaviour {
 
         path = gameObject.AddComponent<LineRenderer>();
     }
-	
-	// Update is called once per frame
-	void Update () {
-        
 
-        gameObject.transform.Translate(direction * Time.deltaTime * 5);
-
-        UpdateMovement();
-
-        if (distance < 1 || target == null)
+    // Update is called once per frame
+    void Update()
+    {
+        if (targetNPC != null)
         {
-            walking = false;
-            int x = Random.Range(0, worldSpawner.npcList.Length-1);
 
-            targetNPC = worldSpawner.npcList[x];
+            if (distance < 2f)
+            {
+                targetNPC.Uninfect();
+                ChooseNewTarget();
+            }
+
+            UpdateTargetLocation();
+
+            gameObject.transform.Translate(direction * Time.deltaTime * 7);
+
+            UpdateMovement();
+        }
+        else {
+
+            ChooseNewTarget();
+
         }
 
-        
+    }
 
+
+    private void ChooseNewTarget() {
+
+        List<AIWalk> infected = worldSpawner.npcList.FindAll(x => x.GetInfectData() != AIWalk.InfectData.NONE);
+            
+        float testDistance = 1000;
+        foreach(AIWalk npc in infected) {
+
+            float d = Vector3.Distance(npc.transform.position, transform.position);
+            if ( d < testDistance) {
+                targetNPC = npc;
+                testDistance = d;
+            }
+
+        }
+
+        if (infected.Count == 0) {
+            targetNPC = worldSpawner.npcList.ToArray()[Random.Range(0, worldSpawner.npcList.Count - 1)];
+        }
+    }
+
+    private void UpdateTargetLocation() {
         target = targetNPC.transform.position;
-
         UpdateMovement();
 
-        int counter = 0;
         RaycastHit hits;
 
-        while (Physics.Raycast(gameObject.transform.position, direction, out hits, distance))
-        {
-            if (counter == 0)
-            {
-                target = hits.transform.position;
-            }
+        if (Physics.Raycast(gameObject.transform.position, direction, out hits, distance)) {
 
-            else
-            {
-                target += Vector3.Lerp(direction, hits.normal, 0.5f);
+            target = hits.point - Vector3.Slerp(direction, hits.normal, 0.5f)*5;
+            target.z = 0;
+            UpdateMovement();     
 
-            }
-            UpdateMovement();
-            counter++;
         }
 
-        path.SetPositions(new Vector3[] { gameObject.transform.position + Vector3.back, target + Vector3.back });
-
-
-
-        
+        path.SetPositions(new Vector3[] { gameObject.transform.position + Vector3.back, target + Vector3.back, targetNPC.transform.position + Vector3.back });
 
     }
 

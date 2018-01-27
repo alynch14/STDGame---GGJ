@@ -153,9 +153,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a6d947bcfcbede49a5ba17d0bdbc799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NO_INFECT: {r: 0.60294116, g: 0.5852076, b: 0.5852076, a: 0}
-  INFECT_P1: {r: 0.5955882, g: 0.5839905, b: 0.17517298, a: 0}
-  INFECT_P2: {r: 0.21085641, g: 0.35414916, b: 0.5514706, a: 0}
+  NO_INFECT: {r: 0.6544118, g: 0.6190364, b: 0.59185773, a: 0}
+  INFECT_P1: {r: 0.77205884, g: 0.7623493, b: 0.42009085, a: 0}
+  INFECT_P2: {r: 0.6397059, g: 0.72941166, b: 0.85294116, a: 0}
   worldObject: {fileID: 0}
 --- !u!135 &135808300760921792
 SphereCollider:

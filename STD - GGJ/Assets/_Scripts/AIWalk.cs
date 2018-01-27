@@ -15,6 +15,8 @@ public class AIWalk : MonoBehaviour {
     public static float MIN_WAIT = 0f;
     public static float MAX_WAIT = 4f;
 
+    public static float WALK_SPEED = 5;
+
     public Color NO_INFECT;
     public Color INFECT_P1;
     public Color INFECT_P2;
@@ -63,7 +65,7 @@ public class AIWalk : MonoBehaviour {
         }
         else {
 
-            gameObject.transform.Translate(direction * Time.deltaTime * 5);
+            gameObject.transform.Translate(direction * Time.deltaTime * WALK_SPEED);
 
             UpdateMovement();
 
@@ -119,8 +121,17 @@ public class AIWalk : MonoBehaviour {
         direction = heading / distance;
 
     }
-    public Vector3 getDirection()
-    {
+
+    public InfectData GetInfectData() {
+        return infected;
+    }
+
+    public void Uninfect() {
+        infected = InfectData.NONE;
+        UpdateVisual();
+    }
+
+    public Vector3 GetDirection() {
         return direction;
     }
 
