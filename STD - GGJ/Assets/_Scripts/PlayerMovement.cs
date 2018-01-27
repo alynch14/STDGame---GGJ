@@ -25,9 +25,9 @@ public class PlayerMovement : MonoBehaviour {
     };
 
 
-    public float MOVEMENT_SPEED = 10;
-    public float MOVEMENT_FRICTION = 0.8f;
-    public float MAX_SPEED = 7;
+    public float MOVEMENT_SPEED = 2;
+    public float MOVEMENT_FRICTION = 3;
+    public float MAX_SPEED = 1;
 
     public int playerNumber = 0;
     private KeyCode[] thisMovement;
