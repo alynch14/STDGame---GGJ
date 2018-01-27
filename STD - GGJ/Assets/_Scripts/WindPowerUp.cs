@@ -13,7 +13,8 @@ public class WindPowerUp : MonoBehaviour {
 
         PlayerMovement otherPlayer = allPlayers.Find(x => x.GetComponent<PlayerMovement>() != p1).GetComponent<PlayerMovement>();
 
-        Destroy(GameObject.Find("WindPowerUp"));
         otherPlayer.myPowerUp = PlayerMovement.powerUp.WIND;
+
+        Destroy(gameObject);
     }
 }

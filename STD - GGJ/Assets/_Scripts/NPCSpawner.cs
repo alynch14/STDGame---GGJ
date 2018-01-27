@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class NPCSpawner : MonoBehaviour {
 
+    public GameObject UI;
+
     public GameObject objectContainer;
 
     public GameObject npcObject;
@@ -61,6 +63,38 @@ public class NPCSpawner : MonoBehaviour {
         play = true;
         SpawnDoctors();
         SpawnNPCs();
+    }
+
+    public void OnGameOver() {
+
+        play = false;
+
+        int player1Points = 0;
+        int player2Points = 0;
+        int doctorPoints  = 0;
+
+        foreach (AIWalk npc in npcList) {
+
+            switch (npc.GetInfectData()) {
+
+                case AIWalk.InfectData.NONE:
+                    doctorPoints++;
+                    break;
+
+                case AIWalk.InfectData.PLAYER_1:
+                    player1Points++;
+                    break;
+
+                case AIWalk.InfectData.PLAYER_2:
+                    player2Points++;
+                    break;
+
+            }
+
+        }
+
+        UI.GetComponent<UIController>().SetupResultsScreen(player1Points, player2Points, doctorPoints);
+
     }
 
 

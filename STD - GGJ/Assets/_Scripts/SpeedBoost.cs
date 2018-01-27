@@ -9,7 +9,8 @@ public class SpeedBoost : MonoBehaviour {
     {
         PlayerMovement p1 = other.GetComponent<PlayerMovement>();
 
-        Destroy(GameObject.Find("SpeedBoost"));
         p1.myPowerUp = PlayerMovement.powerUp.SPEED;
+
+        Destroy(gameObject);
     }
 }

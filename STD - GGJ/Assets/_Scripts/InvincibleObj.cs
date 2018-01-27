@@ -9,7 +9,8 @@ public class InvincibleObj : MonoBehaviour {
     {
         PlayerMovement p1 = other.GetComponent<PlayerMovement>();
 
-        Destroy(GameObject.Find("InvincibleObj"));
         p1.myPowerUp = PlayerMovement.powerUp.INVINCIBILITY;
+
+        Destroy(gameObject);
     }
 }

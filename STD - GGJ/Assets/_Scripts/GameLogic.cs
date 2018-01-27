@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class GameLogic : MonoBehaviour {
 
+    public GameObject UI;
+    public GameObject spawner;
+
     public Text timerText;
 
     float gameTimer;
@@ -20,6 +23,12 @@ public class GameLogic : MonoBehaviour {
             // Thanks Yasin063 https://answers.unity.com/questions/45676/making-a-timer-0000-minutes-and-seconds.html
             timerText.text = Mathf.FloorToInt(gameTimer / 60).ToString("00") + ":" + (gameTimer % 60).ToString("00");
 
+            if (gameTimer <= 0) {
+
+                OnGameEnd();
+
+            }
+
         }
     }
 
@@ -31,5 +40,12 @@ public class GameLogic : MonoBehaviour {
 
     public void OnGameEnd() {
         isPlaying = false;
+
+        UIController uic = UI.GetComponent<UIController>();
+        uic.ResultsScreen(true);
+
+        NPCSpawner ns = spawner.GetComponent<NPCSpawner>();
+        ns.OnGameOver();
+
     }
 }
