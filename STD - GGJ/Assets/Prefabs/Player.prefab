@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 54182086503888978}
   m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,6 +134,10 @@ MonoBehaviour:
   playerNumber: 0
   xVel: 0
   yVel: 0
+  myPowerUp: 0
+  timer: 0
+  player1: {fileID: 0}
+  player2: {fileID: 0}
 --- !u!135 &135800583673549008
 SphereCollider:
   m_ObjectHideFlags: 1

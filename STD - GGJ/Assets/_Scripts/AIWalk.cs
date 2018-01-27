@@ -162,9 +162,10 @@ public class AIWalk : MonoBehaviour {
         if (playerTest != null) {
             //we are touching a player!
             List<GameObject> allPlayers = new List<GameObject>(GameObject.FindGameObjectsWithTag("Player"));
-            allPlayers.Remove(playerTest.gameObject);
+
+            PlayerMovement otherPlayer = allPlayers.Find(x => x.GetComponent<PlayerMovement>() != playerTest).GetComponent<PlayerMovement>();
             
-            if(allPlayers.ToArray()[0].GetComponent<PlayerMovement>().myPowerUp != PlayerMovement.powerUp.INVINCIBILITY){
+            if(otherPlayer.myPowerUp != PlayerMovement.powerUp.INVINCIBILITY){
                 infected = playerTest.playerNumber == 0 ? InfectData.PLAYER_1 : InfectData.PLAYER_2;
                 UpdateVisual();
             }
