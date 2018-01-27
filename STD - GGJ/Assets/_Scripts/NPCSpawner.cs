@@ -22,6 +22,7 @@ public class NPCSpawner : MonoBehaviour {
     public float worldMaxY = 30;
     public List<AIWalk> npcList = new List<AIWalk>();
     public bool play = true;
+    public float timer = 0f;
 
 
 	// Use this for initialization
@@ -34,7 +35,6 @@ public class NPCSpawner : MonoBehaviour {
     {
         if (play)
         {
-            float timer = 0f;
             timer += Time.deltaTime;
 
             if(timer > 15)
@@ -55,6 +55,8 @@ public class NPCSpawner : MonoBehaviour {
                     GameObject powerUp = Instantiate(invincibleObject, new Vector3(Random.Range(worldMinX, worldMaxX), Random.Range(worldMinY, worldMaxY)), Quaternion.identity, objectContainer.transform);
                     powerUp.GetComponent<InvincibleObj>().worldObject = gameObject;
                 }
+
+                timer = 0;
             }
         }
     }
