@@ -8,26 +8,20 @@ public class NPCSpawner : MonoBehaviour {
 
     public GameObject npcObject;
     public GameObject doctorObject;
-<<<<<<< HEAD
+
     public int numNPCs = 100;
     public int numDoctors = 2;
-=======
     public GameObject speedObject;
     public GameObject windObject;
     public GameObject invincibleObject;
-    public const int DOCTOR_MAX = 2;
->>>>>>> 8e0bcbe41464c2415e8365b7cceb02a6cbdf49a5
+
 
     public float worldMinX = -30;
     public float worldMaxX = 30;
     public float worldMinY = -30;
     public float worldMaxY = 30;
-<<<<<<< HEAD
     public List<AIWalk> npcList = new List<AIWalk>();
-=======
-    public GameObject[] npcList = new GameObject[100];
     public bool play = true;
->>>>>>> 8e0bcbe41464c2415e8365b7cceb02a6cbdf49a5
 
 
 	// Use this for initialization
