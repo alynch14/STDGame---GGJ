@@ -165,7 +165,7 @@ public class AIWalk : MonoBehaviour {
 
             PlayerMovement otherPlayer = allPlayers.Find(x => x.GetComponent<PlayerMovement>() != playerTest).GetComponent<PlayerMovement>();
             
-            if(otherPlayer.myPowerUp != PlayerMovement.powerUp.INVINCIBILITY){
+            if(otherPlayer.myPowerUp != PlayerMovement.powerUp.INVINCIBILITY || infected == InfectData.NONE){
                 infected = playerTest.playerNumber == 0 ? InfectData.PLAYER_1 : InfectData.PLAYER_2;
                 UpdateVisual();
             }

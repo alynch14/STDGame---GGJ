@@ -32,10 +32,18 @@ public class PlayerMovement : MonoBehaviour
         KeyCode.A
     };
 
-
+    //speeds
     public float MOVEMENT_SPEED = 2;
     public float MOVEMENT_FRICTION = 3;
     public float MAX_SPEED = 1;
+
+    //effects
+    public float PLAYER_RADIUS = 5;
+    public float PLAYER_WIND_RADIUS = 2;
+    public float PLAYER_PARTICLE_RADIUS = 3;
+    public float PLAYER_PARTICLE_WIND_RADIUS = 1.5f;
+    public int PLAYER_EMIT_WIND = 50;
+    public int PLAYER_EMIT = 1000;
 
     public int playerNumber = 0;
     private KeyCode[] thisMovement;
@@ -91,12 +99,25 @@ public class PlayerMovement : MonoBehaviour
 
         if(myPowerUp == powerUp.WIND)
         {
-            GetComponent<SphereCollider>().radius = 2;
+            GetComponent<SphereCollider>().radius = PLAYER_WIND_RADIUS;
+            ParticleSystem ps = GetComponentInChildren<ParticleSystem>();
+
+            ParticleSystem.ShapeModule shape = ps.shape;
+            shape.radius = PLAYER_PARTICLE_WIND_RADIUS;
+
+            ParticleSystem.EmissionModule emit = ps.emission;
+            emit.rateOverTime = PLAYER_EMIT_WIND;
         }
         else
         {
-            GetComponent<SphereCollider>().radius = 5;
+            GetComponent<SphereCollider>().radius = PLAYER_RADIUS;
+            ParticleSystem ps = GetComponentInChildren<ParticleSystem>();
 
+            ParticleSystem.ShapeModule shape = ps.shape;
+            shape.radius = PLAYER_PARTICLE_WIND_RADIUS;
+
+            ParticleSystem.EmissionModule emit = ps.emission;
+            emit.rateOverTime = PLAYER_EMIT;
         }
 
         int verticalMovement = 0;

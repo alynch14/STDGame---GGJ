@@ -18,7 +18,7 @@ public class GameLogic : MonoBehaviour {
             gameTimer -= Time.deltaTime;
 
             // Thanks Yasin063 https://answers.unity.com/questions/45676/making-a-timer-0000-minutes-and-seconds.html
-            timerText.text = (gameTimer / 60).ToString("00") + ":" + (gameTimer % 60).ToString("00");
+            timerText.text = Mathf.FloorToInt(gameTimer / 60).ToString("00") + ":" + (gameTimer % 60).ToString("00");
 
         }
     }
@@ -26,7 +26,7 @@ public class GameLogic : MonoBehaviour {
     public void OnPlay()
     {
         isPlaying = true;
-        gameTimer = 5;
+        gameTimer = 2 * 60;
     }
 
     public void OnGameEnd() {
