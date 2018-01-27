@@ -93,8 +93,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (myPowerUp == powerUp.SPEED)
         {
-            tempSpeed += 2;
-            tempMax += 2;
+            tempSpeed += 1;
+            tempMax += 1;
         }
 
         if(myPowerUp == powerUp.WIND)
