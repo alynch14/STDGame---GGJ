@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class GameLogic : MonoBehaviour {
 
-    Text timerText;
+    public Text timerText;
 
     float gameTimer;
     bool isPlaying = false;
@@ -17,9 +17,19 @@ public class GameLogic : MonoBehaviour {
 
             gameTimer -= Time.deltaTime;
 
-            //timerText = 
+            // Thanks Yasin063 https://answers.unity.com/questions/45676/making-a-timer-0000-minutes-and-seconds.html
+            timerText.text = (gameTimer / 60).ToString("00") + ":" + (gameTimer % 60).ToString("00");
 
         }
     }
 
+    public void OnPlay()
+    {
+        isPlaying = true;
+        gameTimer = 5;
+    }
+
+    public void OnGameEnd() {
+        isPlaying = false;
+    }
 }
