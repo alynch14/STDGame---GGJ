@@ -15,6 +15,7 @@ public class AIWalk : MonoBehaviour {
     Vector3 heading;
     float distance;
 
+
     float wait = 0;
     bool walking = false;
 
@@ -89,6 +90,10 @@ public class AIWalk : MonoBehaviour {
         distance = heading.magnitude;
         direction = heading / distance;
 
+    }
+    public Vector3 getDirection()
+    {
+        return direction;
     }
 
 }

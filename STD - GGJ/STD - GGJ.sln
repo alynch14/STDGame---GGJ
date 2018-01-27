@@ -1,10 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-<<<<<<< HEAD
 # Visual Studio 2015
-=======
-# Visual Studio 2017
->>>>>>> 482b0a81eb77379b248f5e34a043fe31f56c8c96
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STD - GGJ", "STD - GGJ.csproj", "{B38C21EC-4B98-F90D-AE80-4D71A1F32C56}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STD - GGJ.Plugins", "STD - GGJ.Plugins.csproj", "{25877FC8-44DE-4DBC-E94D-B8722147DA26}"

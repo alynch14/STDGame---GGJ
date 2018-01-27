@@ -288,11 +288,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-    <Compile Include="Assets\_Scripts\Doctor_AIScript.cs" />
-=======
     <Compile Include="Assets\_Scripts\AIWalk.cs" />
->>>>>>> 482b0a81eb77379b248f5e34a043fe31f56c8c96
+    <Compile Include="Assets\_Scripts\Doctor_AIScript.cs" />
     <Compile Include="Assets\_Scripts\NavigationNPC_AIScript.cs" />
     <Compile Include="Assets\_Scripts\NPCSpawner.cs" />
     <Compile Include="Assets\_Scripts\PlayerMovement.cs" />
