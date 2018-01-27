@@ -87,14 +87,16 @@ public class PlayerMovement : MonoBehaviour {
         if (Mathf.Abs(xVel) > MAX_SPEED) {
             xVel = MAX_SPEED * Mathf.Sign(xVel);
         }
-        else if (Mathf.Abs(xVel) < 0.1f) {
+
+        if (Mathf.Abs(xVel) < 0.2f && horizontalMovement == 0) {
             xVel = 0;
         }
 
         if (Mathf.Abs(yVel) > MAX_SPEED) {
             yVel = MAX_SPEED * Mathf.Sign(yVel);
         }
-        else if (Mathf.Abs(yVel) < 0.1f) {
+
+        if (Mathf.Abs(yVel) < 0.2f && verticalMovement == 0) {
             yVel = 0;
         }
 
