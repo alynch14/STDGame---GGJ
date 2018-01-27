@@ -2,13 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour {
+public class PlayerMovement : MonoBehaviour
+{
+    public enum powerUp
+    {
+        NONE,
+        SPEED,
+        WIND,
+        INVINCIBILITY
+    }
 
     // Movement ids
-    private const int MOVE_UP    = 0;
+    private const int MOVE_UP = 0;
     private const int MOVE_RIGHT = 1;
-    private const int MOVE_DOWN  = 2;
-    private const int MOVE_LEFT  = 3;
+    private const int MOVE_DOWN = 2;
+    private const int MOVE_LEFT = 3;
 
     private static KeyCode[] player1Movement = new KeyCode[] {
         KeyCode.UpArrow,
@@ -35,75 +43,147 @@ public class PlayerMovement : MonoBehaviour {
     public float xVel = 0;
     public float yVel = 0;
 
-    // Use this for initialization
-    void Start () {
+    public powerUp myPowerUp = powerUp.NONE;
+    public float timer;
+    public SphereCollider player1;
+    public SphereCollider player2;
 
-        if (thisMovement == null) {
+
+    // Use this for initialization
+    void Start()
+    {
+
+        if (thisMovement == null)
+        {
 
             if (playerNumber == 0)
             {
                 thisMovement = player1Movement;
             }
-            else {
+            else
+            {
                 thisMovement = player2Movement;
             }
 
         }
 
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        float tempSpeed = MOVEMENT_SPEED;
+        float tempMax = MAX_SPEED;
+        if(myPowerUp != powerUp.NONE)
+        {
+            timer += Time.deltaTime;
+        }
+
+        if(timer > 5)
+        {
+            timer = 0;
+            myPowerUp = powerUp.NONE;
+        }
+
+        if (myPowerUp == powerUp.SPEED)
+        {
+            tempSpeed += 2;
+            tempMax += 2;
+        }
+
+        if(myPowerUp == powerUp.WIND)
+        {
+            
+        }
 
         int verticalMovement = 0;
         int horizontalMovement = 0;
 
-        if (Input.GetKey(thisMovement[MOVE_UP])) {
+        if (Input.GetKey(thisMovement[MOVE_UP]))
+        {
             verticalMovement += 1;
         }
 
-        if (Input.GetKey(thisMovement[MOVE_DOWN])) {
+        if (Input.GetKey(thisMovement[MOVE_DOWN]))
+        {
             verticalMovement -= 1;
         }
 
-        if (Input.GetKey(thisMovement[MOVE_RIGHT])) {
+        if (Input.GetKey(thisMovement[MOVE_RIGHT]))
+        {
             horizontalMovement += 1;
         }
 
-        if (Input.GetKey(thisMovement[MOVE_LEFT])) {
+        if (Input.GetKey(thisMovement[MOVE_LEFT]))
+        {
             horizontalMovement -= 1;
         }
 
-        xVel += horizontalMovement * MOVEMENT_SPEED * Time.deltaTime;
-        yVel += verticalMovement * MOVEMENT_SPEED * Time.deltaTime;
+        xVel += horizontalMovement * tempSpeed * Time.deltaTime;
+        yVel += verticalMovement * tempSpeed * Time.deltaTime;
 
-        if (horizontalMovement == 0) {
+        if (horizontalMovement == 0)
+        {
             xVel -= Time.deltaTime * MOVEMENT_FRICTION * Mathf.Sign(xVel);
         }
-        if (verticalMovement == 0) {
+        if (verticalMovement == 0)
+        {
             yVel -= Time.deltaTime * MOVEMENT_FRICTION * Mathf.Sign(yVel);
         }
 
-        if (Mathf.Abs(xVel) > MAX_SPEED) {
-            xVel = MAX_SPEED * Mathf.Sign(xVel);
+        if (Mathf.Abs(xVel) > tempMax)
+        {
+            xVel = tempMax * Mathf.Sign(xVel);
         }
 
-        if (Mathf.Abs(xVel) < 0.2f && horizontalMovement == 0) {
+        if (Mathf.Abs(xVel) < 0.2f && horizontalMovement == 0)
+        {
             xVel = 0;
         }
 
-        if (Mathf.Abs(yVel) > MAX_SPEED) {
-            yVel = MAX_SPEED * Mathf.Sign(yVel);
+        if (Mathf.Abs(yVel) > tempMax)
+        {
+            yVel = tempMax * Mathf.Sign(yVel);
         }
 
-        if (Mathf.Abs(yVel) < 0.2f && verticalMovement == 0) {
+        if (Mathf.Abs(yVel) < 0.2f && verticalMovement == 0)
+        {
             yVel = 0;
         }
+
+        
 
         Vector3 move = (Vector3.up * yVel) + (Vector3.right * xVel);
         //move.Normalize();
 
+
+
         gameObject.transform.Translate(move);
 
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.name == "SpeedBoost")
+        {
+            Destroy(GameObject.Find("SpeedBoost"));
+            myPowerUp = powerUp.SPEED;
+        }
+
+        else if (other.gameObject.name == "WindPowerUp")
+        {
+            Destroy(GameObject.Find("WindPowerUp"));
+            myPowerUp = powerUp.WIND;
+        }
+
+        else if(other.gameObject.name == "Invincibility")
+        {
+            Destroy(GameObject.Find("Invincibility"));
+            myPowerUp = powerUp.INVINCIBILITY;
+        }
+
+        
+        
+    }
+
 }

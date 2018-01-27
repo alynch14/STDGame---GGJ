@@ -193,6 +193,7 @@
     <Reference Include="UnityEngine.WindModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.WindModule.dll</HintPath>
     </Reference>
+<<<<<<< HEAD
     <Reference Include="UnityEngine.UI">
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
     </Reference>
@@ -250,6 +251,8 @@
     <Reference Include="UnityEditor.VR">
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/Editor/UnityEditor.VR.dll</HintPath>
     </Reference>
+=======
+>>>>>>> 8e0bcbe41464c2415e8365b7cceb02a6cbdf49a5
     <Reference Include="UnityEditor.Graphs">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
     </Reference>
@@ -290,11 +293,20 @@
   <ItemGroup>
     <Compile Include="Assets\_Scripts\AIWalk.cs" />
     <Compile Include="Assets\_Scripts\Doctor_AIScript.cs" />
+<<<<<<< HEAD
     <Compile Include="Assets\_Scripts\GameLogic.cs" />
     <Compile Include="Assets\_Scripts\NavigationNPC_AIScript.cs" />
     <Compile Include="Assets\_Scripts\NPCSpawner.cs" />
     <Compile Include="Assets\_Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\_Scripts\UIController.cs" />
+=======
+    <Compile Include="Assets\_Scripts\InvincibleObj.cs" />
+    <Compile Include="Assets\_Scripts\NavigationNPC_AIScript.cs" />
+    <Compile Include="Assets\_Scripts\NPCSpawner.cs" />
+    <Compile Include="Assets\_Scripts\PlayerMovement.cs" />
+    <Compile Include="Assets\_Scripts\SpeedBoost.cs" />
+    <Compile Include="Assets\_Scripts\WindPowerUp.cs" />
+>>>>>>> 8e0bcbe41464c2415e8365b7cceb02a6cbdf49a5
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Plugins\epyphany\ReadMe.txt" />
