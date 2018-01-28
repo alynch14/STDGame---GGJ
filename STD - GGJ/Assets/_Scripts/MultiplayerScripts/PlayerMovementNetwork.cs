@@ -20,10 +20,6 @@ public class PlayerMovementNetwork : PlayerMovement {
 
         if (stream.isWriting)
         {
-            /*ren.material.color = ren.trailMaterial.color = gameSettings.GetComponent<GameSettings>().playerColors[playerNumber];
-            Vector3 colorVector = new Vector3(ren.material.color.r, ren.material.color.g, ren.material.color.b);
-            stream.Serialize(ref colorVector);
-            */
             int storePowerUp = (int)myPowerUp;
             stream.Serialize(ref storePowerUp);
 
@@ -32,11 +28,6 @@ public class PlayerMovementNetwork : PlayerMovement {
         }
         else
         {
-
-            /*Vector3 colorVector = Vector3.zero;
-            stream.Serialize(ref colorVector);
-            ren.material.color = ren.trailMaterial.color = new Color(colorVector.x, colorVector.y, colorVector.z);
-            */
             int updatePowerUp = 0;
             stream.Serialize(ref updatePowerUp);
             myPowerUp = (powerUp)updatePowerUp;
@@ -88,25 +79,38 @@ public class PlayerMovementNetwork : PlayerMovement {
             int verticalMovement = 0;
             int horizontalMovement = 0;
 
-            if (Input.GetKey(player1Movement[MOVE_UP]))
+#if UNITY_STANDALONE
+            if (Input.GetKey(thisMovement[MOVE_UP]))
             {
                 verticalMovement += 1;
             }
 
-            if (Input.GetKey(player1Movement[MOVE_DOWN]))
+            if (Input.GetKey(thisMovement[MOVE_DOWN]))
             {
                 verticalMovement -= 1;
             }
 
-            if (Input.GetKey(player1Movement[MOVE_RIGHT]))
+            if (Input.GetKey(thisMovement[MOVE_RIGHT]))
             {
                 horizontalMovement += 1;
             }
 
-            if (Input.GetKey(player1Movement[MOVE_LEFT]))
+            if (Input.GetKey(thisMovement[MOVE_LEFT]))
             {
                 horizontalMovement -= 1;
             }
+#endif
+
+            //Controls for Android devices
+#if UNITY_ANDROID
+        Touch touch = Input.GetTouch(0);
+
+        if (!touch.Equals(null))
+        {
+            horizontalMovement = (int) (touch.deltaPosition.x);
+            verticalMovement = (int)(touch.deltaPosition.y );
+        }
+#endif
 
             xVel += horizontalMovement * tempSpeed * Time.deltaTime;
             yVel += verticalMovement * tempSpeed * Time.deltaTime;
