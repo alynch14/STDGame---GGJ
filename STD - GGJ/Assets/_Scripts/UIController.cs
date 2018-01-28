@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour {
 
@@ -28,7 +29,7 @@ public class UIController : MonoBehaviour {
     public Dropdown player2Dropdown;
 
 
-    public void Start()
+    public virtual void Start()
     {
         MainMenu();
         ResultsScreen(false);
@@ -47,28 +48,32 @@ public class UIController : MonoBehaviour {
         player2Dropdown.value = settings.player2DiseaseOption;
     }
 
-    public void PlayGame() {
+    public void SwitchMultiplayerMode(bool toMultiplayer) {
+        SceneManager.LoadScene(toMultiplayer ? "MultiplayerScene" : "SinglePlayer");
+    }
+
+    public virtual void PlayGame() {
         mainMenu.SetActive(false);
         creditsPage.SetActive(false);
         settingsPage.SetActive(false);
         gameUI.SetActive(true);
     }
 
-    public void CreditsPage() {
+    public virtual void CreditsPage() {
         mainMenu.SetActive(false);
         creditsPage.SetActive(true);
         settingsPage.SetActive(false);
         gameUI.SetActive(false);
     }
 
-    public void MainMenu() {
+    public virtual void MainMenu() {
         mainMenu.SetActive(true);
         creditsPage.SetActive(false);
         settingsPage.SetActive(false);
         gameUI.SetActive(false);
     }
 
-    public void SettingsPage() {
+    public virtual void SettingsPage() {
         mainMenu.SetActive(false);
         creditsPage.SetActive(false);
         settingsPage.SetActive(true);

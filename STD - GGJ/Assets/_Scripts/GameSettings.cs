@@ -35,7 +35,7 @@ public class GameSettings : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start () {
+	public virtual void Start () {
 
         playerColors = new Color[2];
         playerColors[0] = P1_DEFAULT;
@@ -67,7 +67,7 @@ public class GameSettings : MonoBehaviour {
 
     }
 
-    public void UpdateColors() {
+    public virtual void UpdateColors() {
 
         if (playerColors.Length >= 2)
         {

@@ -16,10 +16,10 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Movement ids
-    private const int MOVE_UP = 0;
-    private const int MOVE_RIGHT = 1;
-    private const int MOVE_DOWN = 2;
-    private const int MOVE_LEFT = 3;
+    public readonly int MOVE_UP = 0;
+    public readonly int MOVE_RIGHT = 1;
+    public readonly int MOVE_DOWN = 2;
+    public readonly int MOVE_LEFT = 3;
 
     private static KeyCode[] player1Movement = new KeyCode[] {
         KeyCode.UpArrow,
@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
     public int PLAYER_EMIT = 1000;
 
     public int playerNumber = 0;
-    private KeyCode[] thisMovement;
+    public KeyCode[] thisMovement;
 
     public float xVel = 0;
     public float yVel = 0;
@@ -59,27 +59,26 @@ public class PlayerMovement : MonoBehaviour
 
 
     // Use this for initialization
-    void Start()
+    public virtual void Start()
     {
 
-        if (thisMovement == null)
+        if (gameSettings == null) {
+            gameSettings = GameObject.Find("_Scripts");
+        }
+
+        if (playerNumber == 0)
         {
-
-            if (playerNumber == 0)
-            {
-                thisMovement = player1Movement;
-            }
-            else
-            {
-                thisMovement = player2Movement;
-            }
-
+            thisMovement = player1Movement;
+        }
+        else
+        {
+            thisMovement = player2Movement;
         }
 
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
 
         //update colors
