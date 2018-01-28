@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class PlayerMovement : MonoBehaviour
 {
 
@@ -76,6 +75,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+        
 
     // Update is called once per frame
     public virtual void Update()
@@ -135,6 +135,7 @@ public class PlayerMovement : MonoBehaviour
         int verticalMovement = 0;
         int horizontalMovement = 0;
 
+#if UNITY_STANDALONE
         if (Input.GetKey(thisMovement[MOVE_UP]))
         {
             verticalMovement += 1;
@@ -154,7 +155,18 @@ public class PlayerMovement : MonoBehaviour
         {
             horizontalMovement -= 1;
         }
+#endif
 
+        //Controls for Android devices
+#if UNITY_ANDROID
+        Touch touch = Input.GetTouch(0);
+
+        if (!touch.Equals(null))
+        {
+            horizontalMovement = (int) (touch.deltaPosition.x);
+            verticalMovement = (int)(touch.deltaPosition.y );
+        }
+#endif
         xVel += horizontalMovement * tempSpeed * Time.deltaTime;
         yVel += verticalMovement * tempSpeed * Time.deltaTime;
 
