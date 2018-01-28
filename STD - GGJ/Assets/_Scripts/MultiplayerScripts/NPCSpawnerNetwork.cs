@@ -4,28 +4,31 @@ using UnityEngine;
 
 public class NPCSpawnerNetwork : NPCSpawner {
 
+
+    public int DOCS_ONLY_MODE = 60;
+
     override public void Update()
     {
         if (play && PhotonNetwork.isMasterClient)
         {
-            timer += Time.deltaTime;
+             timer += Time.deltaTime;
 
             if (timer > POWERUP_TIMER)
             {
                 int var = Random.Range(0, 9);
                 if (var % 3 == 0)
                 {
-                    GameObject powerUp = PhotonNetwork.Instantiate("PowerUp", new Vector3(Random.Range(worldMinX, worldMaxX), Random.Range(worldMinY, worldMaxY)), Quaternion.identity, 2);
+                    GameObject powerUp = (GameObject)PhotonNetwork.Instantiate("PowerUpNetworked", new Vector3(Random.Range(worldMinX, worldMaxX), Random.Range(worldMinY, worldMaxY)), Quaternion.identity, 0);
                     powerUp.GetComponent<PowerUp>().SetPowerupType(PowerUp.PowerType.SPEED);
                 }
                 if (var % 3 == 1)
                 {
-                    GameObject powerUp = PhotonNetwork.Instantiate("PowerUp", new Vector3(Random.Range(worldMinX, worldMaxX), Random.Range(worldMinY, worldMaxY)), Quaternion.identity, 2);
+                    GameObject powerUp = (GameObject)PhotonNetwork.Instantiate("PowerUpNetworked", new Vector3(Random.Range(worldMinX, worldMaxX), Random.Range(worldMinY, worldMaxY)), Quaternion.identity, 0);
                     powerUp.GetComponent<PowerUp>().SetPowerupType(PowerUp.PowerType.WIND);
                 }
                 if (var % 3 == 2)
                 {
-                    GameObject powerUp = PhotonNetwork.Instantiate("PowerUp", new Vector3(Random.Range(worldMinX, worldMaxX), Random.Range(worldMinY, worldMaxY)), Quaternion.identity, 2);
+                    GameObject powerUp = (GameObject)PhotonNetwork.Instantiate("PowerUpNetworked", new Vector3(Random.Range(worldMinX, worldMaxX), Random.Range(worldMinY, worldMaxY)), Quaternion.identity, 0);
                     powerUp.GetComponent<PowerUp>().SetPowerupType(PowerUp.PowerType.INVINCIBLE);
                 }
 
@@ -37,22 +40,26 @@ public class NPCSpawnerNetwork : NPCSpawner {
 
     override public void OnPlay()
     {
-        play = true;
-
-        foreach (AIWalk npc in npcList)
+        if (PhotonNetwork.isMasterClient)
         {
-            Destroy(npc.gameObject);
-        }
-        foreach (Doctor_AIScript doc in docsList)
-        {
-            Destroy(doc.gameObject);
-        }
+            play = true;
 
-        npcList = new List<AIWalk>();
-        docsList = new List<Doctor_AIScript>();
+            foreach (AIWalk npc in npcList)
+            {
+                Destroy(npc.gameObject);
+            }
+            foreach (Doctor_AIScript doc in docsList)
+            {
+                Destroy(doc.gameObject);
+            }
 
-        SpawnDoctors();
-        SpawnNPCs();
+            npcList = new List<AIWalk>();
+            docsList = new List<Doctor_AIScript>();
+
+            SpawnDoctors();
+            SpawnNPCs();
+            Debug.Log("playing");
+        }
     }
 
     override public void OnGameOver()
@@ -94,11 +101,12 @@ public class NPCSpawnerNetwork : NPCSpawner {
 
     override public void SpawnNPCs()
     {
-
+        
         for (int i = 0; i < numNPCs; i++)
         {
 
-            GameObject person = Instantiate(npcObject, new Vector3(Random.Range(worldMinX, worldMaxX), Random.Range(worldMinY, worldMaxY)), Quaternion.identity, objectContainer.transform);
+            GameObject person = PhotonNetwork.Instantiate("NPCNetworked", new Vector3(Random.Range(worldMinX, worldMaxX), Random.Range(worldMinY, worldMaxY)), Quaternion.identity, 0);
+            person.transform.parent = objectContainer.transform;
             AIWalk npcScript = person.GetComponent<AIWalk>();
             npcScript.worldObject = gameObject;
 
@@ -109,9 +117,11 @@ public class NPCSpawnerNetwork : NPCSpawner {
 
     override public void SpawnDoctors()
     {
-        for (int i = 0; i < numDoctors; i++)
+
+        for (int i = 0; i < (PhotonNetwork.playerList.Length == 1 ? DOCS_ONLY_MODE : numDoctors); i++)
         {
-            GameObject person = Instantiate(doctorObject, new Vector3(Random.Range(worldMinX, worldMaxX), Random.Range(worldMinY, worldMaxY)), Quaternion.identity, objectContainer.transform);
+            GameObject person = PhotonNetwork.Instantiate("DoctorNetworked", new Vector3(Random.Range(worldMinX, worldMaxX), Random.Range(worldMinY, worldMaxY)), Quaternion.identity, 0);
+            person.transform.parent = objectContainer.transform;
             Doctor_AIScript docScript = person.GetComponent<Doctor_AIScript>();
             docScript.worldObject = gameObject;
 

@@ -307,11 +307,15 @@
     <Compile Include="Assets\_Scripts\Doctor_AIScript.cs" />
     <Compile Include="Assets\_Scripts\GameLogic.cs" />
     <Compile Include="Assets\_Scripts\GameSettings.cs" />
+    <Compile Include="Assets\_Scripts\MultiplayerScripts\AINetwork.cs" />
+    <Compile Include="Assets\_Scripts\MultiplayerScripts\DoctorNetwork.cs" />
+    <Compile Include="Assets\_Scripts\MultiplayerScripts\GameLogicNetwork.cs" />
     <Compile Include="Assets\_Scripts\MultiplayerScripts\GameSettingsNetwork.cs" />
     <Compile Include="Assets\_Scripts\MultiplayerScripts\NetworkManager.cs" />
     <Compile Include="Assets\_Scripts\MultiplayerScripts\NetworkPlayer.cs" />
     <Compile Include="Assets\_Scripts\MultiplayerScripts\NPCSpawnerNetwork.cs" />
     <Compile Include="Assets\_Scripts\MultiplayerScripts\PlayerMovementNetwork.cs" />
+    <Compile Include="Assets\_Scripts\MultiplayerScripts\PowerUpNetworked.cs" />
     <Compile Include="Assets\_Scripts\MultiplayerScripts\UIControllerNetwork.cs" />
     <Compile Include="Assets\_Scripts\NavigationNPC_AIScript.cs" />
     <Compile Include="Assets\_Scripts\NPCSpawner.cs" />

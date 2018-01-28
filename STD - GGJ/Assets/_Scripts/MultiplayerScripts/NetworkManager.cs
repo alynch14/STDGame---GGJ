@@ -52,8 +52,20 @@ public class NetworkManager : MonoBehaviour {
     void OnJoinedRoom() {
         Debug.Log("Joined Room!");
 
-        GameObject mePlayer = (GameObject)PhotonNetwork.Instantiate("Player Networked", new Vector3(0, 0), Quaternion.identity, 0);
-        mePlayer.GetComponent<PlayerMovement>().gameSettings = gameObject;
+        NPCSpawner spawner = GetComponent<NPCSpawner>();
+
+        GameObject mePlayer = (GameObject)PhotonNetwork.Instantiate("Player Networked", new Vector3(UnityEngine.Random.Range(spawner.worldMinX, spawner.worldMaxX), UnityEngine.Random.Range(spawner.worldMinY, spawner.worldMaxY)), Quaternion.identity, 0);
+        PlayerMovement pMove = mePlayer.GetComponent<PlayerMovement>();
+        pMove.gameSettings = gameObject;
+
+        GameSettingsNetwork gsn = GetComponent<GameSettingsNetwork>();
+
+        gsn.myNumber = pMove.playerNumber = PhotonNetwork.playerList.Length - 1;
+        gsn.UpdateNetworkColor();
+
+
+        GetComponent<GameLogicNetwork>().OnLobbyWait();
+
     }
 
 

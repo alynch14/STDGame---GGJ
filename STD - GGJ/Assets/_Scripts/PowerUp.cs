@@ -15,7 +15,7 @@ public class PowerUp : MonoBehaviour {
         NUM_TYPES
     }
 
-    PowerType myPower = PowerType.NUM_TYPES;
+    public PowerType myPower = PowerType.NUM_TYPES;
 
     public void SetPowerupType(PowerType newType) {
         myPower = newType;

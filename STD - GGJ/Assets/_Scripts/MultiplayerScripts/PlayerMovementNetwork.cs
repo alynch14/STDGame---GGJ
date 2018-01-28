@@ -20,23 +20,32 @@ public class PlayerMovementNetwork : PlayerMovement {
 
         if (stream.isWriting)
         {
-            ren.material.color = ren.trailMaterial.color = gameSettings.GetComponent<GameSettings>().playerColors[playerNumber];
+            /*ren.material.color = ren.trailMaterial.color = gameSettings.GetComponent<GameSettings>().playerColors[playerNumber];
             Vector3 colorVector = new Vector3(ren.material.color.r, ren.material.color.g, ren.material.color.b);
             stream.Serialize(ref colorVector);
-
+            */
             int storePowerUp = (int)myPowerUp;
             stream.Serialize(ref storePowerUp);
+
+            int pNum = playerNumber;
+            stream.Serialize(ref pNum);
         }
         else
         {
 
-            Vector3 colorVector = Vector3.zero;
+            /*Vector3 colorVector = Vector3.zero;
             stream.Serialize(ref colorVector);
             ren.material.color = ren.trailMaterial.color = new Color(colorVector.x, colorVector.y, colorVector.z);
-
+            */
             int updatePowerUp = 0;
             stream.Serialize(ref updatePowerUp);
             myPowerUp = (powerUp)updatePowerUp;
+
+            int pNum = 5;
+            stream.Serialize(ref pNum);
+            playerNumber = pNum;
+            //gameSettings.GetComponent<GameSettingsNetwork>().UpdateNetworkColor(pNum);
+            
 
         }
     }
@@ -44,19 +53,13 @@ public class PlayerMovementNetwork : PlayerMovement {
 
     override public void Update() {
 
+        ParticleSystemRenderer ren = GetComponentInChildren<ParticleSystemRenderer>();
+        ren.material.color = ren.trailMaterial.color = gameSettings.GetComponent<GameSettings>().playerColors[playerNumber];
 
 
         if (GetComponent<PhotonView>().ownerId == PhotonNetwork.player.ID)
         {
             //THIS IS THE OWNER
-
-            //update colors
-            if (gameSettings.GetComponent<GameSettings>().playerColors.Length >= 2)
-            {
-                ParticleSystemRenderer ren = GetComponentInChildren<ParticleSystemRenderer>();
-                ren.material.color = ren.trailMaterial.color = gameSettings.GetComponent<GameSettings>().playerColors[playerNumber];
-            }
-
 
 
             //update speeds
@@ -85,22 +88,22 @@ public class PlayerMovementNetwork : PlayerMovement {
             int verticalMovement = 0;
             int horizontalMovement = 0;
 
-            if (Input.GetKey(thisMovement[MOVE_UP]))
+            if (Input.GetKey(player1Movement[MOVE_UP]))
             {
                 verticalMovement += 1;
             }
 
-            if (Input.GetKey(thisMovement[MOVE_DOWN]))
+            if (Input.GetKey(player1Movement[MOVE_DOWN]))
             {
                 verticalMovement -= 1;
             }
 
-            if (Input.GetKey(thisMovement[MOVE_RIGHT]))
+            if (Input.GetKey(player1Movement[MOVE_RIGHT]))
             {
                 horizontalMovement += 1;
             }
 
-            if (Input.GetKey(thisMovement[MOVE_LEFT]))
+            if (Input.GetKey(player1Movement[MOVE_LEFT]))
             {
                 horizontalMovement -= 1;
             }

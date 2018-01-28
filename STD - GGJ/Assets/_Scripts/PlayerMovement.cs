@@ -21,14 +21,14 @@ public class PlayerMovement : MonoBehaviour
     public readonly int MOVE_DOWN = 2;
     public readonly int MOVE_LEFT = 3;
 
-    private static KeyCode[] player1Movement = new KeyCode[] {
+    public static KeyCode[] player1Movement = new KeyCode[] {
         KeyCode.UpArrow,
         KeyCode.RightArrow,
         KeyCode.DownArrow,
         KeyCode.LeftArrow
     };
 
-    private static KeyCode[] player2Movement = new KeyCode[] {
+    public static KeyCode[] player2Movement = new KeyCode[] {
         KeyCode.W,
         KeyCode.D,
         KeyCode.S,

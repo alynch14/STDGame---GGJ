@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Doctor_AIScript : MonoBehaviour {
     public GameObject worldObject;
-    NPCSpawner worldSpawner;
+    public NPCSpawner worldSpawner;
 
     public AIWalk targetNPC;
 
@@ -18,17 +18,10 @@ public class Doctor_AIScript : MonoBehaviour {
     public Vector3 heading;
     public float distance;
 
-#pragma warning disable CS0414 // The field 'Doctor_AIScript.wait' is assigned but its value is never used
-    float wait = 0;
-#pragma warning restore CS0414 // The field 'Doctor_AIScript.wait' is assigned but its value is never used
-#pragma warning disable CS0414 // The field 'Doctor_AIScript.walking' is assigned but its value is never used
-    bool walking = false;
-#pragma warning restore CS0414 // The field 'Doctor_AIScript.walking' is assigned but its value is never used
-
-    LineRenderer path;
+    public LineRenderer path;
 
     // Use this for initialization
-    void Start () {
+    public void Start () {
         if (worldObject == null)
         {
             worldObject = GameObject.Find("_Scripts");
@@ -39,11 +32,11 @@ public class Doctor_AIScript : MonoBehaviour {
             worldSpawner = worldObject.GetComponent<NPCSpawner>();
         }
 
-        path = gameObject.AddComponent<LineRenderer>();
+        path = GetComponent<LineRenderer>();
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
         if (targetNPC != null)
         {
@@ -69,7 +62,7 @@ public class Doctor_AIScript : MonoBehaviour {
     }
 
 
-    private void ChooseNewTarget() {
+    public void ChooseNewTarget() {
 
         List<AIWalk> infected = worldSpawner.npcList.FindAll(x => x.GetInfectData() != AIWalk.InfectData.NONE);
             
@@ -89,7 +82,7 @@ public class Doctor_AIScript : MonoBehaviour {
         }
     }
 
-    private void UpdateTargetLocation() {
+    public void UpdateTargetLocation() {
         target = targetNPC.transform.position;
         UpdateMovement();
 
@@ -109,7 +102,7 @@ public class Doctor_AIScript : MonoBehaviour {
 
 
 
-    private void UpdateMovement()
+    public void UpdateMovement()
     {
 
         heading = target - gameObject.transform.position;

@@ -18,11 +18,11 @@ public class GameLogic : MonoBehaviour {
 
     public float GAME_TIME = 120;
 
-    float gameTimer;
-    bool isPlaying = false;
+    public float gameTimer;
+    public bool isPlaying = false;
 
 
-    private void Update()
+    public virtual void Update()
     {
         if (isPlaying) {
 
@@ -40,7 +40,7 @@ public class GameLogic : MonoBehaviour {
         }
     }
 
-    public void OnPlay()
+    public virtual void OnPlay()
     {
         isPlaying = true;
         gameTimer = GAME_TIME;
@@ -49,7 +49,7 @@ public class GameLogic : MonoBehaviour {
         player2.transform.position = player2Start;
     }
 
-    public void OnGameEnd() {
+    public virtual void OnGameEnd() {
         isPlaying = false;
 
         UIController uic = UI.GetComponent<UIController>();

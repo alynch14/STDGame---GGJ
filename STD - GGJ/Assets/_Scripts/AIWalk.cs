@@ -8,6 +8,9 @@ public class AIWalk : MonoBehaviour {
 
         PLAYER_1,
         PLAYER_2,
+        PLAYER_3,
+        PLAYER_4,
+
         NONE
 
     }
@@ -26,19 +29,19 @@ public class AIWalk : MonoBehaviour {
     NPCSpawner worldSpawner;
 
     //this npc's features
-    InfectData infected = InfectData.NONE;
+    public InfectData infected = InfectData.NONE;
 
     //targeting
-    Vector3 target;
-    Vector3 direction;
-    Vector3 heading;
-    float distance;
+    public Vector3 target;
+    public Vector3 direction;
+    public Vector3 heading;
+    public float distance;
 
 
-    float wait = 0;
-    bool walking = false;
+    public float wait = 0;
+    public bool walking = false;
 
-    LineRenderer path;
+    public LineRenderer path;
 
     // Use this for initialization
     void Start () {
@@ -58,7 +61,7 @@ public class AIWalk : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
+	public virtual void Update () {
 
         if (!walking) {
             wait -= Time.deltaTime;
@@ -101,7 +104,7 @@ public class AIWalk : MonoBehaviour {
 
 
 
-    private void GetNewTarget() {
+    public virtual void GetNewTarget() {
 
         target = new Vector3(Random.Range(worldSpawner.worldMinX, worldSpawner.worldMaxX), Random.Range(worldSpawner.worldMinY, worldSpawner.worldMaxY));
 
@@ -114,7 +117,7 @@ public class AIWalk : MonoBehaviour {
     }
 
 
-    private void UpdateMovement() {
+    public void UpdateMovement() {
 
         heading = target - gameObject.transform.position;
         distance = heading.magnitude;
@@ -135,7 +138,7 @@ public class AIWalk : MonoBehaviour {
         return direction;
     }
 
-    public void UpdateVisual() {
+    public virtual void UpdateVisual() {
 
         GameSettings settings = worldObject.GetComponent<GameSettings>();
         INFECT_P1 = settings.playerColors[0] * 0.7f;
@@ -159,7 +162,7 @@ public class AIWalk : MonoBehaviour {
 
     }
 
-    private void OnTriggerEnter(Collider other) {
+    public virtual void OnTriggerEnter(Collider other) {
 
         PlayerMovement playerTest = other.GetComponent<PlayerMovement>();
 

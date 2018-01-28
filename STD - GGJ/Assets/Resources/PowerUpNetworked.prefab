@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33773945094509946}
   - component: {fileID: 65599363791390118}
   - component: {fileID: 23728869024585040}
-  - component: {fileID: 114400170896647608}
+  - component: {fileID: 114624550143476486}
   - component: {fileID: 114782099596650154}
   m_Layer: 0
   m_Name: PowerUpNetworked
@@ -97,7 +97,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114400170896647608
+--- !u!114 &114624550143476486
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -105,12 +105,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1874176107786612}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: babcf1a6f92a28948ada7cf50bb5f71a, type: 3}
+  m_Script: {fileID: 11500000, guid: cfdf333cf2c3ca441b53adcb6b8b2f94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   windPowerup: {fileID: 2100000, guid: 509f1e1b59086284b9b419984cfd647a, type: 2}
   speedPowerup: {fileID: 2100000, guid: 307e322d944f09949add9817cc05f067, type: 2}
   invinciblePowerup: {fileID: 2100000, guid: df5ca624255ed244ab972d8ab302e4e2, type: 2}
+  myPower: 3
 --- !u!114 &114782099596650154
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -131,6 +132,7 @@ MonoBehaviour:
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 1
   ObservedComponents:
+  - {fileID: 114624550143476486}
   - {fileID: 4975712100844572}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
