@@ -23,8 +23,14 @@ public class NPCSpawner : MonoBehaviour {
     public float worldMinY = -30;
     public float worldMaxY = 30;
     public List<AIWalk> npcList = new List<AIWalk>();
+    public List<Doctor_AIScript> docsList = new List<Doctor_AIScript>();
     public bool play = false;
     public float timer = 0f;
+
+    private void Start()
+    {
+        play = false;
+    }
 
 
     void Update()
@@ -61,6 +67,18 @@ public class NPCSpawner : MonoBehaviour {
     public void OnPlay()
     {
         play = true;
+
+        foreach (AIWalk npc in npcList) {
+            Destroy(npc.gameObject);
+        }
+        foreach (Doctor_AIScript doc in docsList)
+        {
+            Destroy(doc.gameObject);
+        }
+
+        npcList = new List<AIWalk>();
+        docsList = new List<Doctor_AIScript>();
+
         SpawnDoctors();
         SpawnNPCs();
     }
@@ -117,7 +135,10 @@ public class NPCSpawner : MonoBehaviour {
         for (int i = 0; i < numDoctors; i++)
         {
             GameObject person = Instantiate(doctorObject, new Vector3(Random.Range(worldMinX, worldMaxX), Random.Range(worldMinY, worldMaxY)), Quaternion.identity, objectContainer.transform);
-            person.GetComponent<Doctor_AIScript>().worldObject = gameObject;
+            Doctor_AIScript docScript = person.GetComponent<Doctor_AIScript>();
+            docScript.worldObject = gameObject;
+
+            docsList.Add(docScript);
         }
     }
 

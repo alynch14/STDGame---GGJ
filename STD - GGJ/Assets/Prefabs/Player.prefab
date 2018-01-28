@@ -95,7 +95,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1026841052685034}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 47.4, y: -21.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4310250848389116}
@@ -128,16 +128,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07db9d2e90a486e4fa1a28218f7cc71c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MOVEMENT_SPEED: 1
+  gameSettings: {fileID: 0}
+  MOVEMENT_SPEED: 2
   MOVEMENT_FRICTION: 4
   MAX_SPEED: 1
+  PLAYER_RADIUS: 5
+  PLAYER_WIND_RADIUS: 2
+  PLAYER_PARTICLE_RADIUS: 3
+  PLAYER_PARTICLE_WIND_RADIUS: 1.5
+  PLAYER_EMIT_WIND: 50
+  PLAYER_EMIT: 300
   playerNumber: 0
   xVel: 0
   yVel: 0
   myPowerUp: 0
   timer: 0
-  player1: {fileID: 0}
-  player2: {fileID: 0}
 --- !u!135 &135800583673549008
 SphereCollider:
   m_ObjectHideFlags: 1

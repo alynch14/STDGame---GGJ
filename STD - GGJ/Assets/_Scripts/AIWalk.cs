@@ -137,6 +137,10 @@ public class AIWalk : MonoBehaviour {
 
     public void UpdateVisual() {
 
+        GameSettings settings = worldObject.GetComponent<GameSettings>();
+        INFECT_P1 = settings.playerColors[0] * 0.7f;
+        INFECT_P2 = settings.playerColors[1] * 0.7f;
+
         MeshRenderer renderer = gameObject.GetComponentInChildren<MeshRenderer>();
 
         switch (infected) {

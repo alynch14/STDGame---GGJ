@@ -8,7 +8,15 @@ public class GameLogic : MonoBehaviour {
     public GameObject UI;
     public GameObject spawner;
 
+    public GameObject player1;
+    public GameObject player2;
+
+    public Vector3 player1Start = new Vector3(45, -20, 0);
+    public Vector3 player2Start = new Vector3(-45, 20, 0);
+
     public Text timerText;
+
+    public float GAME_TIME = 120;
 
     float gameTimer;
     bool isPlaying = false;
@@ -35,7 +43,10 @@ public class GameLogic : MonoBehaviour {
     public void OnPlay()
     {
         isPlaying = true;
-        gameTimer = 2 * 60;
+        gameTimer = GAME_TIME;
+
+        player1.transform.position = player1Start;
+        player2.transform.position = player2Start;
     }
 
     public void OnGameEnd() {

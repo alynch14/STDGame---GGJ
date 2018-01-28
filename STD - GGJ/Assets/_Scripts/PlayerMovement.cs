@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+
+    public GameObject gameSettings;
+
     public enum powerUp
     {
         NONE,
@@ -78,6 +81,16 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        //update colors
+        if (gameSettings.GetComponent<GameSettings>().playerColors.Length >= 2)
+        {
+            ParticleSystemRenderer ren = GetComponentInChildren<ParticleSystemRenderer>();
+            ren.material.color = ren.trailMaterial.color = gameSettings.GetComponent<GameSettings>().playerColors[playerNumber];
+        }
+
+
+        //update speeds
         float tempSpeed = MOVEMENT_SPEED;
         float tempMax = MAX_SPEED;
         if(myPowerUp != powerUp.NONE)
@@ -184,30 +197,6 @@ public class PlayerMovement : MonoBehaviour
 
         gameObject.transform.Translate(move);
 
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.name == "SpeedBoost")
-        {
-            Destroy(GameObject.Find("SpeedBoost"));
-            myPowerUp = powerUp.SPEED;
-        }
-
-        else if (other.gameObject.name == "WindPowerUp")
-        {
-            Destroy(GameObject.Find("WindPowerUp"));
-            myPowerUp = powerUp.WIND;
-        }
-
-        else if(other.gameObject.name == "Invincibility")
-        {
-            Destroy(GameObject.Find("Invincibility"));
-            myPowerUp = powerUp.INVINCIBILITY;
-        }
-
-        
-        
     }
 
 }
