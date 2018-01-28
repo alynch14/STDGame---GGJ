@@ -6834,7 +6834,7 @@ MonoBehaviour:
   player1Start: {x: 45, y: -20, z: 0}
   player2Start: {x: -45, y: 20, z: 0}
   timerText: {fileID: 1648819673}
-  GAME_TIME: 4
+  GAME_TIME: 120
 --- !u!114 &1899663824
 MonoBehaviour:
   m_ObjectHideFlags: 0
