@@ -110,3 +110,8 @@ MonoBehaviour:
   windPowerup: {fileID: 2100000, guid: 509f1e1b59086284b9b419984cfd647a, type: 2}
   speedPowerup: {fileID: 2100000, guid: 307e322d944f09949add9817cc05f067, type: 2}
   invinciblePowerup: {fileID: 2100000, guid: df5ca624255ed244ab972d8ab302e4e2, type: 2}
+  windSFX: {fileID: 8300000, guid: 4f202b4363a02c84b8cae202563604fd, type: 3}
+  speedSFX: {fileID: 8300000, guid: 73ec06d7867975540a9390749fc91a5c, type: 3}
+  invincibleSFX: {fileID: 8300000, guid: 804f596991d67f24ea0f98865fd59741, type: 3}
+  a: {fileID: 0}
+  myPower: 3
