@@ -59,6 +59,10 @@ public class GameSettings : MonoBehaviour {
         {
             player1DiseaseOption = player1Dropdown.value;
             player2DiseaseOption = player2Dropdown.value;
+        } else
+        {
+            player1Dropdown.value = player1DiseaseOption;
+            player2Dropdown.value = player2DiseaseOption;
         }
 
     }
