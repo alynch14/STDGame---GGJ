@@ -80,11 +80,13 @@ public class UIController : MonoBehaviour {
         gameUI.SetActive(false);
     }
 
+
+    [PunRPC]
     public void ResultsScreen(bool show) {
         resultsPage.SetActive(show);
     }
 
-    public void SetupResultsScreen(int player1, int player2, int doctor) {
+    public virtual void SetupResultsScreen(int player1, int player2, int doctor) {
 
         gameUI.SetActive(false);
 

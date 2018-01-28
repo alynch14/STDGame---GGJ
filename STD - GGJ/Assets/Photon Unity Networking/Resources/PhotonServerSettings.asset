@@ -37,4 +37,6 @@ MonoBehaviour:
   - RequestForPickupItems
   - RequestForPickupTimes
   - NetworkedColors
+  - ResultsScreen
+  - SetupResultsScreen
   DisableAutoOpenWizard: 1

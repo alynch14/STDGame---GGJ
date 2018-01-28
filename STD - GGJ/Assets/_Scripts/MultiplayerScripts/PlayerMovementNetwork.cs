@@ -4,11 +4,20 @@ using UnityEngine;
 
 public class PlayerMovementNetwork : PlayerMovement {
 
-    override public void Start() {
 
-        base.Start();
+    // Use this for initialization
+    override public void Start()
+    {
+
+        if (gameSettings == null)
+        {
+            gameSettings = GameObject.Find("_Scripts");
+        }
+
+        thisMovement = player2Movement;
 
         GetComponentInChildren<Camera>().gameObject.SetActive(GetComponent<PhotonView>().ownerId == PhotonNetwork.player.ID);
+
 
     }
 

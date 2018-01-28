@@ -67,8 +67,8 @@ public class NPCSpawnerNetwork : NPCSpawner {
 
         play = false;
 
-        int player1Points = 0;
-        int player2Points = 0;
+        int totalPoints = 0;
+        int[] playerPoints = new int[4];
         int doctorPoints = 0;
 
         foreach (AIWalk npc in npcList)
@@ -82,18 +82,29 @@ public class NPCSpawnerNetwork : NPCSpawner {
                     break;
 
                 case AIWalk.InfectData.PLAYER_1:
-                    player1Points++;
+                    playerPoints[0]++;
                     break;
 
                 case AIWalk.InfectData.PLAYER_2:
-                    player2Points++;
+                    playerPoints[1]++;
+                    break;
+
+                case AIWalk.InfectData.PLAYER_3:
+                    playerPoints[2]++;
+                    break;
+
+                case AIWalk.InfectData.PLAYER_4:
+                    playerPoints[3]++;
                     break;
 
             }
 
+            totalPoints++;
+
         }
 
-        UI.GetComponent<UIController>().SetupResultsScreen(player1Points, player2Points, doctorPoints);
+        UI.GetComponent<UIControllerNetwork>().networkResultsData(doctorPoints, playerPoints, totalPoints);
+        //GetComponent<PhotonView>().RPC("SetupResultsScreen", PhotonTargets.AllBufferedViaServer, doctorPoints, playerPoints, totalPoints);
 
     }
 

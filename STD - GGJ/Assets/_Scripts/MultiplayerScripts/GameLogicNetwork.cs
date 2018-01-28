@@ -62,8 +62,8 @@ public class GameLogicNetwork : GameLogic {
     {
         isPlaying = false;
 
-        UIController uic = UI.GetComponent<UIController>();
-        uic.ResultsScreen(true);
+        UIControllerNetwork ui = spawner.GetComponent<UIControllerNetwork>();
+        ui.networkResults();
 
         NPCSpawner ns = spawner.GetComponent<NPCSpawner>();
         ns.OnGameOver();
