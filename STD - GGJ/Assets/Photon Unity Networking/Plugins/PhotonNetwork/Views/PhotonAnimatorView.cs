@@ -93,8 +93,12 @@ public class PhotonAnimatorView : MonoBehaviour, IPunObservable
     [SerializeField]
     private List<SynchronizedLayer> m_SynchronizeLayers = new List<SynchronizedLayer>();
 
+#pragma warning disable CS0169 // The field 'PhotonAnimatorView.m_ReceiverPosition' is never used
     private Vector3 m_ReceiverPosition;
+#pragma warning restore CS0169 // The field 'PhotonAnimatorView.m_ReceiverPosition' is never used
+#pragma warning disable CS0169 // The field 'PhotonAnimatorView.m_LastDeserializeTime' is never used
     private float m_LastDeserializeTime;
+#pragma warning restore CS0169 // The field 'PhotonAnimatorView.m_LastDeserializeTime' is never used
     private bool m_WasSynchronizeTypeChanged = true;
     private PhotonView m_PhotonView;
 

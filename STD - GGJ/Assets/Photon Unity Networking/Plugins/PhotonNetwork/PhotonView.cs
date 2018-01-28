@@ -256,9 +256,13 @@ public class PhotonView : Photon.MonoBehaviour
     protected internal bool removedFromLocalViewList;
 
     internal MonoBehaviour[] RpcMonoBehaviours;
+#pragma warning disable CS0169 // The field 'PhotonView.OnSerializeMethodInfo' is never used
     private MethodInfo OnSerializeMethodInfo;
+#pragma warning restore CS0169 // The field 'PhotonView.OnSerializeMethodInfo' is never used
 
+#pragma warning disable CS0169 // The field 'PhotonView.failedToFindOnSerialize' is never used
     private bool failedToFindOnSerialize;
+#pragma warning restore CS0169 // The field 'PhotonView.failedToFindOnSerialize' is never used
 
     /// <summary>Called by Unity on start of the application and does a setup the PhotonView.</summary>
     protected internal void Awake()

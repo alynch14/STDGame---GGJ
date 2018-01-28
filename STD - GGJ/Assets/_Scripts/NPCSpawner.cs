@@ -13,18 +13,20 @@ public class NPCSpawner : MonoBehaviour {
 
     public int numNPCs = 100;
     public int numDoctors = 2;
-    public GameObject speedObject;
-    public GameObject windObject;
-    public GameObject invincibleObject;
+    public GameObject powerUpObject;
 
 
     public float worldMinX = -30;
     public float worldMaxX = 30;
     public float worldMinY = -30;
     public float worldMaxY = 30;
+
     public List<AIWalk> npcList = new List<AIWalk>();
     public List<Doctor_AIScript> docsList = new List<Doctor_AIScript>();
+
     public bool play = false;
+
+    public float POWERUP_TIMER = 15;
     public float timer = 0f;
 
     private void Start()
@@ -33,29 +35,29 @@ public class NPCSpawner : MonoBehaviour {
     }
 
 
-    void Update()
+    public virtual void Update()
     {
         if (play)
         {
             timer += Time.deltaTime;
 
-            if(timer > 15)
+            if(timer > POWERUP_TIMER)
             {
                 int var = Random.Range(0, 9);
                 if (var%3 == 0)
                 {
-                    GameObject powerUp = Instantiate(speedObject, new Vector3(Random.Range(worldMinX, worldMaxX), Random.Range(worldMinY, worldMaxY)), Quaternion.identity, objectContainer.transform);
-                    powerUp.GetComponent<SpeedBoost>().worldObject = gameObject;
+                    GameObject powerUp = Instantiate(powerUpObject, new Vector3(Random.Range(worldMinX, worldMaxX), Random.Range(worldMinY, worldMaxY)), Quaternion.identity, objectContainer.transform);
+                    powerUp.GetComponent<PowerUp>().SetPowerupType(PowerUp.PowerType.SPEED);
                 }
                 if(var % 3 == 1)
                 {
-                    GameObject powerUp = Instantiate(windObject, new Vector3(Random.Range(worldMinX, worldMaxX), Random.Range(worldMinY, worldMaxY)), Quaternion.identity, objectContainer.transform);
-                    powerUp.GetComponent<WindPowerUp>().worldObject = gameObject;
+                    GameObject powerUp = Instantiate(powerUpObject, new Vector3(Random.Range(worldMinX, worldMaxX), Random.Range(worldMinY, worldMaxY)), Quaternion.identity, objectContainer.transform);
+                    powerUp.GetComponent<PowerUp>().SetPowerupType(PowerUp.PowerType.WIND);
                 }
                 if(var % 3 == 2)
                 {
-                    GameObject powerUp = Instantiate(invincibleObject, new Vector3(Random.Range(worldMinX, worldMaxX), Random.Range(worldMinY, worldMaxY)), Quaternion.identity, objectContainer.transform);
-                    powerUp.GetComponent<InvincibleObj>().worldObject = gameObject;
+                    GameObject powerUp = Instantiate(powerUpObject, new Vector3(Random.Range(worldMinX, worldMaxX), Random.Range(worldMinY, worldMaxY)), Quaternion.identity, objectContainer.transform);
+                    powerUp.GetComponent<PowerUp>().SetPowerupType(PowerUp.PowerType.INVINCIBLE);
                 }
 
                 timer = 0;
@@ -64,7 +66,7 @@ public class NPCSpawner : MonoBehaviour {
     }
 
 
-    public void OnPlay()
+    public virtual void OnPlay()
     {
         play = true;
 
@@ -83,7 +85,7 @@ public class NPCSpawner : MonoBehaviour {
         SpawnNPCs();
     }
 
-    public void OnGameOver() {
+    public virtual void OnGameOver() {
 
         play = false;
 
@@ -117,7 +119,7 @@ public class NPCSpawner : MonoBehaviour {
 
 
 
-    public void SpawnNPCs() {
+    public virtual void SpawnNPCs() {
 
         for (int i = 0; i < numNPCs; i++) {
 
@@ -130,7 +132,7 @@ public class NPCSpawner : MonoBehaviour {
 
     }
 
-    public void SpawnDoctors()
+    public virtual void SpawnDoctors()
     {
         for (int i = 0; i < numDoctors; i++)
         {

@@ -15,7 +15,9 @@ using System.Collections.Generic;
 public class PhotonTransformViewPositionControl 
 {
     PhotonTransformViewPositionModel m_Model;
+#pragma warning disable CS0169 // The field 'PhotonTransformViewPositionControl.m_CurrentSpeed' is never used
     float m_CurrentSpeed;
+#pragma warning restore CS0169 // The field 'PhotonTransformViewPositionControl.m_CurrentSpeed' is never used
     double m_LastSerializeTime;
     Vector3 m_SynchronizedSpeed = Vector3.zero;
     float m_SynchronizedTurnSpeed = 0;

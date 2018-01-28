@@ -18,8 +18,12 @@ public class Doctor_AIScript : MonoBehaviour {
     public Vector3 heading;
     public float distance;
 
+#pragma warning disable CS0414 // The field 'Doctor_AIScript.wait' is assigned but its value is never used
     float wait = 0;
+#pragma warning restore CS0414 // The field 'Doctor_AIScript.wait' is assigned but its value is never used
+#pragma warning disable CS0414 // The field 'Doctor_AIScript.walking' is assigned but its value is never used
     bool walking = false;
+#pragma warning restore CS0414 // The field 'Doctor_AIScript.walking' is assigned but its value is never used
 
     LineRenderer path;
 

@@ -71,7 +71,9 @@ namespace ExitGames.UtilityScripts
 		int[] _playerIds;
 		object _indexes;
 		Dictionary<int,int> _indexesLUT;
+#pragma warning disable CS0169 // The field 'PlayerRoomIndexing._indexesPool' is never used
 		List<bool> _indexesPool;
+#pragma warning restore CS0169 // The field 'PlayerRoomIndexing._indexesPool' is never used
 		PhotonPlayer _p;
 
 		#endregion
