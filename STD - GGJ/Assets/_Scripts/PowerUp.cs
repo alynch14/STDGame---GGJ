@@ -7,6 +7,11 @@ public class PowerUp : MonoBehaviour {
     public Material windPowerup;
     public Material speedPowerup;
     public Material invinciblePowerup;
+    public AudioClip windSFX;
+    public AudioClip speedSFX;
+    public AudioClip invincibleSFX;
+    public AudioSource a = new AudioSource();
+
 
     public enum PowerType {
         WIND,
@@ -56,16 +61,25 @@ public class PowerUp : MonoBehaviour {
 
                 otherPlayer.myPowerUp = PlayerMovement.powerUp.WIND;
 
+                //windSFX.LoadAudioData();
+                //a.Play(windSFX.LoadAudioData());
+
                 break;
 
             case PowerType.SPEED:
                 p1.myPowerUp = PlayerMovement.powerUp.SPEED;
 
+                //speedSFX.LoadAudioData();
+                //a.Play();
+
                 break;
 
             case PowerType.INVINCIBLE:
                 p1.myPowerUp = PlayerMovement.powerUp.INVINCIBILITY;
-                
+
+                //invincibleSFX.LoadAudioData();
+                //a.Play();
+
                 break;
         }
 
