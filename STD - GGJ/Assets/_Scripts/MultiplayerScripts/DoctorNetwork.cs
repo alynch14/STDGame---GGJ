@@ -19,7 +19,7 @@ public class DoctorNetwork : Doctor_AIScript {
 
             Vector3 targ = Vector3.zero;
             stream.Serialize(ref targ);
-            path.SetPositions(new Vector3[] { gameObject.transform.position + Vector3.back, target + Vector3.back });
+            path.SetPositions(new Vector3[] { gameObject.transform.position + Vector3.back, targ + Vector3.back });
 
         }
     }
