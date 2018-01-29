@@ -81,8 +81,7 @@ public class UIController : MonoBehaviour {
     }
 
 
-    [PunRPC]
-    public void ResultsScreen(bool show) {
+    public virtual void ResultsScreen(bool show) {
         resultsPage.SetActive(show);
     }
 

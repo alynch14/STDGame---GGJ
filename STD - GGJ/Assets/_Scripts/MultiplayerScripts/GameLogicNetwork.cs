@@ -62,7 +62,7 @@ public class GameLogicNetwork : GameLogic {
     {
         isPlaying = false;
 
-        UIControllerNetwork ui = spawner.GetComponent<UIControllerNetwork>();
+        UIControllerNetwork ui = UI.GetComponent<UIControllerNetwork>();
         ui.networkResults();
 
         NPCSpawner ns = spawner.GetComponent<NPCSpawner>();

@@ -39,4 +39,5 @@ MonoBehaviour:
   - NetworkedColors
   - ResultsScreen
   - SetupResultsScreen
+  - ShowResultsScreen
   DisableAutoOpenWizard: 1

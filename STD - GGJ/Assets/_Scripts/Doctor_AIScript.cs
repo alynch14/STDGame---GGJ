@@ -32,7 +32,11 @@ public class Doctor_AIScript : MonoBehaviour {
             worldSpawner = worldObject.GetComponent<NPCSpawner>();
         }
 
-        path = GetComponent<LineRenderer>();
+
+        if (path == null)
+        {
+            path = GetComponent<LineRenderer>();
+        }
     }
 
     // Update is called once per frame

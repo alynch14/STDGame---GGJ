@@ -48,7 +48,12 @@ public class UIControllerNetwork : UIController {
     public void networkResults() {
 
 
-        GetComponent<PhotonView>().RPC("ResultsScreen", PhotonTargets.All);
+        GetComponent<PhotonView>().RPC("ShowResultsScreen", PhotonTargets.AllViaServer);
+    }
+
+    [PunRPC]
+    public void ShowResultsScreen() {
+        resultsPage.SetActive(true);
     }
 
     override public void SettingsPage()
@@ -58,7 +63,7 @@ public class UIControllerNetwork : UIController {
     }
 
     public void networkResultsData(int doctor, int[] playerScores, int total) {
-        GetComponent<PhotonView>().RPC("SetupResultsScreen", PhotonTargets.AllBufferedViaServer, doctor, playerScores, total);
+        GetComponent<PhotonView>().RPC("SetupResultsScreen", PhotonTargets.AllViaServer, doctor, playerScores, total);
     }
 
     [PunRPC]
@@ -82,10 +87,12 @@ public class UIControllerNetwork : UIController {
 
             pResult.GetComponentInChildren<Text>().text = playerScores[i].ToString();
 
-            float percent = playerScores[i] / total;
+            float percent = (float)playerScores[i] / total;
 
             RectTransform p = pResult.GetComponent<RectTransform>();
-            p.sizeDelta = new Vector2( resultParent.GetComponent<RectTransform>().sizeDelta.x * percent, p.sizeDelta.y );
+            p.sizeDelta = new Vector2( p.sizeDelta.x * percent, p.sizeDelta.y );
+            p.GetComponentInChildren<Text>().alignment = (i % 2 == 0 ? TextAnchor.UpperCenter : TextAnchor.LowerCenter);
+
             pResult.GetComponent<Image>().color = settings.playerColors[i];
 
             if (playerScores[i] > winScore) {
@@ -96,7 +103,7 @@ public class UIControllerNetwork : UIController {
 
         }
 
-        winText += settings.diseaseOptions[settings.player1DiseaseOption] + "(Player " + winnerId + ")";
+        winText += settings.diseaseOptions[settings.player1DiseaseOption] + "(Player " + (winnerId+1) + ")";
         winColor = settings.playerColors[winnerId];
 
 

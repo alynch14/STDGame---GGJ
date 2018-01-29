@@ -11,7 +11,7 @@ public class DoctorNetwork : Doctor_AIScript {
 
         if (stream.isWriting)
         {
-            Vector3 targ = targetNPC.transform.position;
+            Vector3 targ = (targetNPC == null ? gameObject.transform.position :targetNPC.transform.position);
             stream.Serialize(ref targ);
         }
         else
@@ -19,6 +19,11 @@ public class DoctorNetwork : Doctor_AIScript {
 
             Vector3 targ = Vector3.zero;
             stream.Serialize(ref targ);
+
+            if (path == null)
+            {
+                path = GetComponent<LineRenderer>();
+            }
             path.SetPositions(new Vector3[] { gameObject.transform.position + Vector3.back, targ + Vector3.back });
 
         }
